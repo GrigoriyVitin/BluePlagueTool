@@ -34,7 +34,6 @@ public class JoinActivity extends Activity {
     int PlayersShitBord;
     int PlayersShit;
 
-    String tunnel;
     String ChoosenNick;
     Boolean AdminEntered;
 
