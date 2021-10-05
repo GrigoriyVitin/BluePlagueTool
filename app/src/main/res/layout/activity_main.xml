@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="com.RedAuroraCreation.blueplaguetool.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/StartNick"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="301dp"
+            android:layout_height="52dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Красная Заря, товарищ!"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/TextNick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/TextNick"
+            android:layout_width="268dp"
+            android:layout_height="63dp"
+            android:ems="10"
+            android:hint="Введите псевдоним"
+            android:inputType="textPersonName"
+            android:textColor="#777777"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/PredSetNick"
+            android:layout_width="286dp"
+            android:layout_height="32dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Не меньше трёх знаков!"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/TextNick"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@+id/TextNick"
+            app:layout_constraintTop_toBottomOf="@+id/TextNick"
+            tools:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="270dp"
+            android:layout_height="62dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PredSetNick">
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:background="#F30000"
+                android:backgroundTint="#780000"
+                android:onClick="ButPrinatNick"
+                android:text="Принять"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:background="#F30000"
+                android:backgroundTint="#780000"
+                android:onClick="ButExit"
+                android:text="Выйти"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TableRow
+            android:layout_width="406dp"
+            android:layout_height="66dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/MainMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <Button
+            android:id="@+id/ButCreate"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:background="@color/purple_500"
+            android:onClick="ButCreate"
+            android:text="Создать комнату"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/ButJoin"
+            app:layout_constraintEnd_toEndOf="@+id/ButJoin"
+            app:layout_constraintStart_toStartOf="@+id/ButJoin" />
+
+        <Button
+            android:id="@+id/ButJoin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_500"
+            android:onClick="ButJoin"
+            android:text="Присоединиться"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/ButSpravka"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@color/purple_500"
+            android:text="Открыть справку"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/ButJoin"
+            app:layout_constraintStart_toStartOf="@+id/ButJoin"
+            app:layout_constraintTop_toBottomOf="@+id/ButJoin" />
+
+        <Button
+            android:id="@+id/butChangeNick"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@color/purple_500"
+            android:onClick="ButChangeNick"
+            android:text="Сменить псевдоним"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/ButSpravka"
+            app:layout_constraintStart_toStartOf="@+id/ButSpravka"
+            app:layout_constraintTop_toBottomOf="@+id/ButSpravka" />
+
+        <Button
+            android:id="@+id/ButExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="132dp"
+            android:background="@color/purple_500"
+            android:onClick="ButExit"
+            android:text="Выйти"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/butChangeNick"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@+id/butChangeNick"
+            app:layout_constraintTop_toBottomOf="@+id/butChangeNick"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CreateWindow"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="gone">
+
+        <EditText
+            android:id="@+id/RoomNameCreate"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Название комнаты"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/PredSetRoomName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/StatesShitGroup"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PlayersShitGroup">
+
+            <LinearLayout
+                android:id="@+id/StatesShit"
+                android:layout_width="176dp"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/ButStatesShitMenshe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/purple_500"
+                    android:onClick="ButStatesShitMenshe"
+                    android:text="-"
+                    android:textAllCaps="false"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/StatesShitIndicator"
+                    android:layout_width="101dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:text="4"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/ButStatesShitBolshe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/purple_500"
+                    android:onClick="ButStatesShitBolshe"
+                    android:text="+"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewrtr"
+                android:layout_width="93dp"
+                android:layout_height="27dp"
+                android:text="Стороны"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/PlayersShitGroup"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45">
+
+            <LinearLayout
+                android:id="@+id/PlayersShit"
+                android:layout_width="176dp"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/ButPlayersShitMenshe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/purple_500"
+                    android:onClick="ButPlayersShitMenshe"
+                    android:text="-"
+                    android:textAllCaps="false"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/PlayersShitIndicator"
+                    android:layout_width="101dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:text="4"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/ButPlayersShitBolshe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/purple_500"
+                    android:onClick="ButPlayersShitBolshe"
+                    android:text="+"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewrtrtrtr"
+                android:layout_width="93dp"
+                android:layout_height="27dp"
+                android:text="Игроки"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ButCreateGroup"
+            android:layout_width="262dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/StatesShitGroup"
+            app:layout_constraintStart_toStartOf="@+id/StatesShitGroup"
+            app:layout_constraintTop_toBottomOf="@+id/StatesShitGroup">
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButCreateClaim"
+                android:text="Создать"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitNe"
+                android:text="Отмена"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/PredSetRoomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вы не ввели название комнаты!"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/PlayersShitGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/JoinWindow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone">
+
+        <EditText
+            android:id="@+id/TextRoomJoinName"
+            android:layout_width="237dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="32dp"
+            android:ems="10"
+            android:hint="Название комнаты"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/PredJoinRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@+id/TextRoomJoinName"
+            tools:layout_editor_absoluteX="176dp" />
+
+        <TextView
+            android:id="@+id/PredJoinCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@+id/TextRoomJoinCode"
+            tools:layout_editor_absoluteX="176dp" />
+
+        <EditText
+            android:id="@+id/TextRoomJoinCode"
+            android:layout_width="237dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Код доступа"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PredJoinRoom"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Куда путь держишь, товарищ?"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/TextRoomJoinName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TableRow
+            android:layout_width="261dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintEnd_toEndOf="@+id/TextRoomJoinCode"
+            app:layout_constraintStart_toStartOf="@+id/TextRoomJoinCode"
+            app:layout_constraintTop_toBottomOf="@+id/PredJoinCode">
+
+            <Button
+                android:id="@+id/ButJoinClaim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButJoinClaim"
+                android:text="Принять"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="11dp"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/ButJoinCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitNe"
+                android:text="Отмена"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+        </TableRow>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ExitWindow"
+        android:layout_width="389dp"
+        android:layout_height="124dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="325dp"
+            android:layout_height="67dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Вы точно хотите выйти?"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            <Button
+                android:id="@+id/ButExitDa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitDa"
+                android:text="Да"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/ptptptptpt"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/ButExitNe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitNe"
+                android:text="Нет"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+        </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

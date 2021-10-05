@@ -1,0 +1,272 @@
+<?xml version ="1.0" encoding ="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="com.RedAuroraCreation.blueplaguetool.JoinActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ExitWindow"
+        android:layout_width="389dp"
+        android:layout_height="124dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView228"
+            android:layout_width="325dp"
+            android:layout_height="67dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Вы точно хотите \n включить комнату?"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            <Button
+                android:id="@+id/ButExitDa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitDa"
+                android:text="Да"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/ptptptptpt"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/ButExitNe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                android:onClick="ButExitNe"
+                android:text="Нет"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+        </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/MainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/RoomNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/RoomCodeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RoomNameTextView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="417dp"
+            android:layout_height="0dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RoomCodeTextView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="354dp"
+                android:layout_height="0dp"
+                android:background="@color/greywhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PlayerShitIndicator"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:id="@+id/LayPlayerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <TextView
+                android:id="@+id/PlayerShitIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ControlPanel"
+                android:layout_width="355dp"
+                android:layout_height="72dp"
+                android:background="@color/purple_700"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/butEnter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/purple_500"
+                    android:onClick="ButEnter"
+                    android:text="Войти"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/butStartGame"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/butStartGame"
+                    app:layout_constraintTop_toTopOf="@+id/butStartGame" />
+
+                <Button
+                    android:id="@+id/butStartGame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/purple_500"
+                    android:text="Начать"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/butTurnOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/purple_500"
+                    android:onClick="ButTurnOff"
+                    android:text="Выкл."
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/butStartGame"
+                    app:layout_constraintEnd_toStartOf="@+id/butStartGame"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/butStartGame" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/PlayerPanel"
+                android:layout_width="355dp"
+                android:layout_height="72dp"
+                android:background="@color/greyblack"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/ControlPanel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="visible">
+
+                <ImageButton
+                    android:id="@+id/ButStateReichskom"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_marginStart="1dp"
+                    android:backgroundTint="@color/color0"
+                    android:contentDescription="TODO"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_reichskom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/ButStateAlliance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
+
+                <ImageButton
+                    android:id="@+id/ButStateFederation"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_marginStart="1dp"
+                    android:backgroundTint="@color/color0"
+                    android:contentDescription="TODO"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_federation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ButStateBrotherhood"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+                <ImageButton
+                    android:id="@+id/ButStateAlliance"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_marginStart="1dp"
+                    android:backgroundTint="@color/color0"
+                    android:contentDescription="TODO"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_alliance"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ButStateFederation"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/ButStateBrotherhood"
+                    android:layout_width="83dp"
+                    android:layout_height="83dp"
+                    android:layout_marginStart="9dp"
+                    android:backgroundTint="@color/color0"
+                    android:contentDescription="TODO"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_brotherhood"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
