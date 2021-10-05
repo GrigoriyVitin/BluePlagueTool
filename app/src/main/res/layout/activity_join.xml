@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ExitWindow"
-        android:layout_width="389dp"
-        android:layout_height="124dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +26,7 @@
             android:text="Вы точно хотите \n включить комнату?"
             android:textColor="#000000"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,9 +36,9 @@
             android:layout_width="363dp"
             android:layout_height="54dp"
             android:gravity="center_horizontal|center_vertical"
-            app:layout_constraintEnd_toEndOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView228">
 
             <Button
                 android:id="@+id/ButExitDa"
@@ -47,6 +48,7 @@
                 android:onClick="ButExitDa"
                 android:text="Да"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <Button
@@ -54,6 +56,7 @@
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:text="Button"
+                android:textColor="@color/white"
                 android:visibility="invisible" />
 
             <Button
@@ -64,6 +67,7 @@
                 android:onClick="ButExitNe"
                 android:text="Нет"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
         </TableRow>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -213,6 +217,7 @@
                     android:layout_marginStart="1dp"
                     android:backgroundTint="@color/color0"
                     android:contentDescription="TODO"
+                    android:onClick="ButStateReichskom"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_reichskom"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -229,6 +234,7 @@
                     android:layout_marginStart="1dp"
                     android:backgroundTint="@color/color0"
                     android:contentDescription="TODO"
+                    android:onClick="ButStateFederation"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_federation"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -243,6 +249,7 @@
                     android:layout_marginStart="1dp"
                     android:backgroundTint="@color/color0"
                     android:contentDescription="TODO"
+                    android:onClick="ButStateAlliance"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_alliance"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -257,6 +264,7 @@
                     android:layout_marginStart="9dp"
                     android:backgroundTint="@color/color0"
                     android:contentDescription="TODO"
+                    android:onClick="ButStateBrotherhood"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_brotherhood"
                     app:layout_constraintBottom_toBottomOf="parent"

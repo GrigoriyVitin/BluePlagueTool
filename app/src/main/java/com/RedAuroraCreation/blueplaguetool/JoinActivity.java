@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +57,12 @@ public class JoinActivity extends Activity {
         DBref.removeValue();
         super.onDestroy();
     }
+    @Override
+    protected void onStop() {
+        DBref.removeValue();
+        super.onStop();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +76,7 @@ public class JoinActivity extends Activity {
         PlayerList = new ArrayList();
         PlayerTagIdSlave = new HashMap<String, Integer>();
         RowDeleteContainer = new PlayerRow(JoinActivity.this);
+        ChoosenNick = "";
 
         DBsrc = FirebaseDatabase.getInstance();
         CurScreen = "MainLayout";
@@ -97,54 +109,55 @@ public class JoinActivity extends Activity {
                             Log.d("PlayerList", "Проекция БД содержит меньшее кол-во игроков, чем сама БД");
                             for(int shit = 0; shit<rPlayerList.size(); shit++){
                                 Log.d("PlayerList", "Проверяем игрока "+rPlayerList.get(shit));
+                                PlayerRow playerRow = new PlayerRow(JoinActivity.this);
                                 if(!PlayerList.contains(rPlayerList.get(shit))){
                                     Log.d("PlayerList", "В БД комнаты игрок "+rPlayerList.get(shit)+" содержится, но в самой комнате его нет. Исправляем.");
-                                    PlayerRow playerRow = new PlayerRow(JoinActivity.this);
-                                    {LinearLayout.LayoutParams PlayerRowLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                        playerRow.setLayoutParams(PlayerRowLayoutParams);}
+                                    {LinearLayout.LayoutParams PlayerRowLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 80);
+                                    playerRow.setLayoutParams(PlayerRowLayoutParams);}
                                     playerRow.setTag("PlayerRow"+rPlayerList.get(shit));
-                                    String vID = ""+playerRow.getTag();
                                     playerRow.setBackgroundColor(getResources().getColor(R.color.color0));
                                     playerRow.bullshit = false;
 
                                     TextView PlayerNick = new TextView(JoinActivity.this);
-                                    PlayerNick.setWidth(400);
+                                    PlayerNick.setWidth(270);
                                     PlayerNick.setId(genId());
                                     PlayerNick.setText(""+rPlayerList.get(shit));
                                     PlayerNick.setTextSize(24);
-                                    playerRow.addView(PlayerNick);
+                                    playerRow.addView(PlayerNick,0);
+
+                                    ImageView icon = new ImageView(JoinActivity.this);
+                                    icon.setTag("StateIcon"+rPlayerList.get(shit));
+                                    icon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                                    playerRow.addView(icon, 1);
 
                                     if(AdminMode){
                                         Button deleteBut = new Button(JoinActivity.this);
-                                    deleteBut.setWidth(1);
-                                    deleteBut.setId(genId());
-                                    deleteBut.setVisibility(View.INVISIBLE);
-                                    deleteBut.setBackgroundColor(getResources().getColor(R.color.purple_700));
-                                    deleteBut.setText("✖");
-                                    deleteBut.setTextColor(getResources().getColor(R.color.purple_500));
-                                    deleteBut.setTextSize(24);
-
-                                    deleteBut.setOnClickListener(new View.OnClickListener(){
+                                        deleteBut.setWidth(1);
+                                        deleteBut.setId(genId());
+                                        deleteBut.setTag("DeleteBut"+PlayerNick);
+                                        deleteBut.setVisibility(View.INVISIBLE);
+                                        deleteBut.setBackgroundColor(getResources().getColor(R.color.purple_700));
+                                        deleteBut.setText("✖");
+                                        deleteBut.setTextColor(getResources().getColor(R.color.purple_500));
+                                        deleteBut.setTextSize(24);
+                                        deleteBut.setOnClickListener(new View.OnClickListener(){
                                         @Override
                                         public void onClick(View v){
                                             if(deleteBut.getVisibility()==View.VISIBLE){
                                                 DBref.child("Players").child(PlayerNick.getText().toString()).removeValue();
                                                 ((PlayerRow)deleteBut.getParent()).callOnClick();
                                                 Log.d("Выделены", PlayerNick.getText().toString()+"//"+Nickname);
-                                                if(PlayerNick.getText().toString()==Nickname){
+                                                if(Nickname.equals(PlayerNick.getText().toString())){
                                                     Log.d("deleteBut", "Удален PlayerRow админа");
                                                     ((Button)Obj("butEnter")).setText("Войти");
                                                     AdminEntered = false;
                                                 }
-                                                ChoosenNick = null;
+                                                ChoosenNick = "";
                                             }
                                         }
                                     });
-                                    playerRow.addView(deleteBut);
+                                        playerRow.addView(deleteBut, 2);
                                     }
-
-
-                                    Log.d("RightsMode", ""+AdminMode);
                                     if(AdminMode){
                                         Log.d("PlayerRow", "Метод оnClick присвоен");
                                         playerRow.setOnClickListener(new View.OnClickListener() {
@@ -153,29 +166,30 @@ public class JoinActivity extends Activity {
                                                 if(!playerRow.bullshit){
                                                     Log.d("onClick", "PlayerRow выделен");
                                                     playerRow.select(true);
-                                                    if (ChoosenNick!=null){
+                                                    if (!ChoosenNick.isEmpty()){
                                                         PlayerRow prevPlayerRow = (PlayerRow)findViewById(PlayerTagIdSlave.get(("PlayerRow"+ChoosenNick)));
                                                         prevPlayerRow.select(false);
                                                         ((TextView)prevPlayerRow.getChildAt(0)).setTextColor(getResources().getColor(R.color.greyblack));
-                                                        prevPlayerRow.getChildAt(1).setVisibility(View.INVISIBLE);
+                                                        prevPlayerRow.getChildAt(2).setVisibility(View.INVISIBLE);
+
                                                     }
                                                     ((TextView)playerRow.getChildAt(0)).setTextColor(getResources().getColor(R.color.white));
-                                                    playerRow.getChildAt(1).setVisibility(View.VISIBLE);
+                                                    playerRow.getChildAt(2).setVisibility(View.VISIBLE);
                                                     Log.d("onClick", "PlayerNick: "+PlayerNick.getText());
                                                     ChoosenNick = (String) PlayerNick.getText();
                                                     Log.d("ChoosenNick", ChoosenNick);
                                                 }else{
                                                     Log.d("onClick", "PlayerRow отпущен");
                                                     playerRow.select(false);
-                                                    if (ChoosenNick!=null){
+                                                    if (!ChoosenNick.isEmpty()){
                                                         PlayerRow prevPlayerRow = (PlayerRow)findViewById(PlayerTagIdSlave.get(("PlayerRow"+ChoosenNick)));
                                                         prevPlayerRow.select(false);
                                                         ((TextView)prevPlayerRow.getChildAt(0)).setTextColor(getResources().getColor(R.color.greyblack));
-                                                        prevPlayerRow.getChildAt(1).setVisibility(View.INVISIBLE);
+                                                        prevPlayerRow.getChildAt(2).setVisibility(View.INVISIBLE);
                                                     }
                                                     ((TextView)playerRow.getChildAt(0)).setTextColor(getResources().getColor(R.color.greyblack));
-                                                    playerRow.getChildAt(1).setVisibility(View.INVISIBLE);
-                                                    ChoosenNick = null;
+                                                    playerRow.getChildAt(2).setVisibility(View.INVISIBLE);
+                                                    ChoosenNick = "";
                                                 }
                                             }
                                         });
@@ -192,7 +206,6 @@ public class JoinActivity extends Activity {
                                     PlayerTagIdSlave.put("PlayerRow"+rPlayerList.get(shit), playerRow.getId());
                                     Log.d("Сгенерированный Id", ""+playerRow.getId()+", записан под тегом "+"PlayerRow"+rPlayerList.get(shit));
                                     //Григорий: 2050471767; Степан: 1831544557;
-                                    break;
                                 }else{
                                     Log.d("PlayerList", "Комната содержит игрока "+rPlayerList.get(shit));
                                 }
@@ -219,7 +232,29 @@ public class JoinActivity extends Activity {
                                     Log.d("PlayerList", "БД комнаты содержит игрока "+PlayerList.get(shit));
                                 }
                             }
+                        }else{
+                            for(int shit = 0; shit<rPlayerList.size(); shit++){
+                                JSONObject jsPlayerList = new JSONObject(hmPlayerList);
+                                String jsPlayerState = jsPlayerList.getJSONObject(rPlayerList.get(shit).toString()).getString("State");
+                                if(jsPlayerState!=null){
+                                    switch (jsPlayerState){
+                                        case("Brotherhood"):
+                                            ((ImageView)((PlayerRow)findViewById(PlayerTagIdSlave.get("PlayerRow"+rPlayerList.get(shit)))).getChildAt(1)).setImageDrawable(getDrawable(R.drawable.icon_brotherhood));
+                                            break;
+                                        case("Federation"):
+                                            ((ImageView)((PlayerRow)findViewById(PlayerTagIdSlave.get("PlayerRow"+rPlayerList.get(shit)))).getChildAt(1)).setImageDrawable(getDrawable(R.drawable.icon_federation));
+                                            break;
+                                        case("Alliance"):
+                                            ((ImageView)((PlayerRow)findViewById(PlayerTagIdSlave.get("PlayerRow"+rPlayerList.get(shit)))).getChildAt(1)).setImageDrawable(getDrawable(R.drawable.icon_alliance));
+                                            break;
+                                        case("Reichskom"):
+                                            ((ImageView)((PlayerRow)findViewById(PlayerTagIdSlave.get("PlayerRow"+rPlayerList.get(shit)))).getChildAt(1)).setImageDrawable(getDrawable(R.drawable.icon_reichskom));
+                                            break;
+                                    }
+                                }
+                            }
                         }
+
                     } catch (Exception e) {
                         Log.d("hmPlayerList", "получен String... "+(String) task.getResult().getValue());
                         if((String) task.getResult().getValue()==null){
@@ -262,12 +297,11 @@ public class JoinActivity extends Activity {
     public void ButTurnOff(View but){
         layswitch("ExitWindow");
     }
-
     public void ButEnter(View but){
         if(!AdminEntered){
             ((Button)Obj("butEnter")).setText("Выйти");
             AdminEntered = true;
-            DBref.child("Players").child(Nickname).setValue("0");
+            DBref.child("Players").child(Nickname).child("Online").setValue(1);
             findViewById(R.id.PlayerPanel).setVisibility(View.VISIBLE);
         }else{
             ((Button)Obj("butEnter")).setText("Войти");
@@ -275,6 +309,19 @@ public class JoinActivity extends Activity {
             DBref.child("Players").child(Nickname).removeValue();
             findViewById(R.id.PlayerPanel).setVisibility(View.GONE);
         }
+    }
+
+    public void ButStateBrotherhood(View but){
+        DBref.child("Players").child(Nickname).child("State").setValue("Brotherhood");
+    }
+    public void ButStateFederation(View but){
+        DBref.child("Players").child(Nickname).child("State").setValue("Federation");
+    }
+    public void ButStateAlliance(View but){
+        DBref.child("Players").child(Nickname).child("State").setValue("Alliance");
+    }
+    public void ButStateReichskom(View but){
+        DBref.child("Players").child(Nickname).child("State").setValue("Reichskom");
     }
 
     public void ButExitNe(View but){
